@@ -1,4 +1,9 @@
 # py-pathfinding
+
+[![Build Status](https://travis-ci.org/qiao/PathFinding.js.svg?branch=master)](https://travis-ci.org/qiao/PathFinding.js)
+[![Dependency Status](https://david-dm.org/qiao/pathfinding.js.png)](https://david-dm.org/qiao/pathfinding.js)
+[![Documentation Status](https://readthedocs.org/projects/pathfindingjs/badge/)](https://readthedocs.org/projects/pathfindingjs/?badge=latest)
+
 ## Description
 This is a simplest program in python that realized the 2-D path finding algorithms. Including 3 kinds algorithm, they are
 * Breadth first search
