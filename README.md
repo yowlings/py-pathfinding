@@ -26,5 +26,7 @@ Just the start point and goal point in 2D.
 You can choose one algorithm from above 3 by changing the code line:
 >d1.dijkstra()
 
+## Reference
+[Astar](http://www.redblobgames.com/pathfinding/a-star/introduction.html)
 ## License
 MIT.
