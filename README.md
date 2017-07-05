@@ -11,10 +11,10 @@ This is a simplest program in python that realized the 2-D path finding algorith
 * Astar search
 
 ## Dependences
-1 python 2.7
-2 opencv 2.4
-3 numpy
-4 pyplot
+1. python 2.7
+2. opencv 2.4
+3. numpy
+4. pyplot
 
 ## How to use?
 ### graph
