@@ -102,51 +102,48 @@ class pathfind():
 					cv.waitKey(1)
 	def dijkstra(self):
 		frontier = Queue.PriorityQueue()
-		frontier.put(self.start, 0)
+		frontier.put((0, self.start))
 		self.came_from = {}
-		cost_so_far = {}
+		self.cost_so_far = {}
 		self.came_from[self.start] = None
-		cost_so_far[self.start] = 0
-
+		self.cost_so_far[self.start] = 0
 		while not frontier.empty():
-
-			current = frontier.get()
-
-			if current == goal:
+			current = frontier.get()[1]
+			if current == self.goal:
 				break
 			neighbors = self.get_neighbors(current)
-			for next in neighbors:
-				new_cost = cost_so_far[current] - 10
+			for neighbor in neighbors:
+				new_cost = self.cost_so_far[current] + 1
 				# print new_cost
-				if next not in cost_so_far or new_cost > cost_so_far[next]:
-					cost_so_far[next] = new_cost
+				if neighbor not in self.cost_so_far or new_cost < self.cost_so_far[neighbor]:
+					self.cost_so_far[neighbor] = new_cost
 					priority = new_cost
-					frontier.put(next, priority)
+					frontier.put((priority, neighbor))
 					# print frontier
-					self.came_from[next] = current
-					self.orimg[next[0],next[1],0] = 0
-					self.orimg[next[0],next[1],1] = 0
-					cv.imshow('orimg', self.orimg)
-					cv.waitKey(1)
+					self.came_from[neighbor] = current
+					self.orimg[neighbor[0],neighbor[1],0] = 0
+					self.orimg[neighbor[0],neighbor[1],1] = 0
+					# cv.imshow('orimg', self.orimg)
+					# cv.waitKey(1)
 
 	def astar(self):
 		frontier = Queue.PriorityQueue()
-		frontier.put(self.start, 0)
+		frontier.put((0, self.start))
 		self.came_from = {}
 		cost_so_far = {}
 		self.came_from[start] = None
 		cost_so_far[start] = 0
 		while not frontier.empty():
-			current = frontier.get()
+			current = frontier.get()[1]
 			if current == goal:
 				break
 			neighbors = self.get_neighbors(current)
 			for next in neighbors:
-				new_cost = cost_so_far[current] + self.img[next[0],next[1]]
+				new_cost = cost_so_far[current] + 1
 				if next not in cost_so_far or new_cost < cost_so_far[next]:
 					cost_so_far[next] = new_cost
 					priority = new_cost + self.heuristic(self.goal, next)
-					frontier.put(next, priority)
+					frontier.put((priority, next))
 					self.came_from[next] = current
 					self.orimg[next[0],next[1],0] = 0
 					self.orimg[next[0],next[1],1] = 0
@@ -157,12 +154,12 @@ class pathfind():
 
 graph='office.jpg'
 start = (176,42)
-goal = (100,210)
+goal = (200,130)
 
 d1 = pathfind(graph,1,start,goal)
 d1.pre_process()
 begin = time.time()
-d1.dijkstra()
+d1.astar()
 end = time.time()
 print d1.columns,d1.rows
 
